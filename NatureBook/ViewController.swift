@@ -39,6 +39,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    @objc func addItem(){
+        
+         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondVC")
+        vc.modalPresentationStyle = .formSheet
+         self.present(vc, animated: true)
+         
+    }
+    
+    // Bunu fonksiyonu eklememin amacı data kayıt edilmeden hemen önce bu viewController'a haber vermek
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "newData"), object: nil)
     }
@@ -73,16 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }
     }
-    
-    @objc func addItem(){
-        
-         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondVC")
-        vc.modalPresentationStyle = .formSheet
-         self.present(vc, animated: true)
-         
-        
-    }
-    
+  
     
 }
 

@@ -68,6 +68,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 print("Error")
             }
             
+            // İkinci ekran kapanacak ve Kayıt edilen data tableView'da görünür olacak.
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "newData"), object: nil)
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true)
