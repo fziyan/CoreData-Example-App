@@ -17,6 +17,7 @@
 		7EEAB3C72A2F5C83007E8D3E /* NatureBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAB3C62A2F5C83007E8D3E /* NatureBookTests.swift */; };
 		7EEAB3D12A2F5C83007E8D3E /* NatureBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAB3D02A2F5C83007E8D3E /* NatureBookUITests.swift */; };
 		7EEAB3D32A2F5C83007E8D3E /* NatureBookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAB3D22A2F5C83007E8D3E /* NatureBookUITestsLaunchTests.swift */; };
+		7EEAB3E02A2F5E9B007E8D3E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAB3DF2A2F5E9B007E8D3E /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		7EEAB3CC2A2F5C83007E8D3E /* NatureBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NatureBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEAB3D02A2F5C83007E8D3E /* NatureBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatureBookUITests.swift; sourceTree = "<group>"; };
 		7EEAB3D22A2F5C83007E8D3E /* NatureBookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NatureBookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7EEAB3DF2A2F5E9B007E8D3E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				7EEAB3AC2A2F5C82007E8D3E /* AppDelegate.swift */,
 				7EEAB3AE2A2F5C82007E8D3E /* SceneDelegate.swift */,
 				7EEAB3B02A2F5C82007E8D3E /* ViewController.swift */,
+				7EEAB3DF2A2F5E9B007E8D3E /* SecondViewController.swift */,
 				7EEAB3B22A2F5C82007E8D3E /* Main.storyboard */,
 				7EEAB3B82A2F5C83007E8D3E /* Assets.xcassets */,
 				7EEAB3BA2A2F5C83007E8D3E /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 				7EEAB3B12A2F5C82007E8D3E /* ViewController.swift in Sources */,
 				7EEAB3B72A2F5C82007E8D3E /* NatureBook.xcdatamodeld in Sources */,
 				7EEAB3AD2A2F5C82007E8D3E /* AppDelegate.swift in Sources */,
+				7EEAB3E02A2F5E9B007E8D3E /* SecondViewController.swift in Sources */,
 				7EEAB3AF2A2F5C82007E8D3E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
