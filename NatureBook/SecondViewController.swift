@@ -70,7 +70,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "newData"), object: nil)
             self.navigationController?.popViewController(animated: true)
-            self.navigationController?.topViewController?.dismiss(animated: true)
+            self.dismiss(animated: true)
         }
         
     
