@@ -14,10 +14,52 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var place: UITextField!
     @IBOutlet weak var year: UITextField!
+    var targetName = ""
+    var targetId: UUID?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if targetName != "" {
+            // Core data verilerini burda çekeceğiz
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Gallery")
+            
+            //id'ye göre filtreleme
+            let idString = targetId?.uuidString
+            fetchRequest.predicate = NSPredicate(format: "id = %@", idString!)
+            fetchRequest.returnsObjectsAsFaults = false // Bu satır Core data içindeki verirler okurken  uygulamaının hızını arttırmaya yarıyor. Apple dokümaında böyle yazıyor.
+            
+            do {
+                
+               let results =  try context.fetch(fetchRequest)
+                for result in results as! [NSManagedObject] {
+                    
+                    if let nameT = result.value(forKey: "name") as? String{
+                        name.text = nameT
+                    }
+                    if let placeT = result.value(forKey: "name") as? String{
+                        place.text = placeT
+                    }
+                    if let yearT = result.value(forKey: "year") as? Int{
+                        year.text = String(yearT)
+                    }
+                    if let imageData = result.value(forKey: "image") as? Data {
+                        let image = UIImage(data: imageData)
+                        imageView.image = image
+                    }
+                  
+                }
+                
+            }catch{
+                print("Error")
+            }
+            
+        }else{
+            
+        }
         
         imageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTap))

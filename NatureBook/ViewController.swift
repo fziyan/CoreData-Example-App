@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var nameArray = [String]()
     var idArray = [UUID]()
+    var sourceName = ""
+    var sourceId: UUID?
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,6 +25,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = UITableViewCell()
         cell.textLabel?.text = nameArray[indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        sourceName = nameArray[indexPath.row]
+        sourceId = idArray[indexPath.row]
+        
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondVC") as! SecondViewController
+        vc.targetName = sourceName
+        vc.targetId = sourceId
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true)
+        
     }
     
     

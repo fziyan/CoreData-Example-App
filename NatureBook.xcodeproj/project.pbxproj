@@ -620,6 +620,7 @@
 			currentVersion = 7EEAB3B62A2F5C82007E8D3E /* NatureBook.xcdatamodel */;
 			path = NatureBook.xcdatamodeld;
 			sourceTree = "<group>";
+			usesTabs = 0;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
