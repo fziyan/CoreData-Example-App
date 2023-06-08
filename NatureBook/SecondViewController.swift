@@ -57,8 +57,6 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 print("Error")
             }
             
-        }else{
-            
         }
         
         imageView.isUserInteractionEnabled = true
@@ -70,7 +68,6 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     @objc func imageTap(){
         
         let picker = UIImagePickerController()
-        
         picker.delegate = self
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true

@@ -57,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         do{
             let results = try context.fetch(fetchRequest)
             for result in results as! [NSManagedObject] {
-                if let id = result.value(forKey: "id") as? UUID {
+                if let _ = result.value(forKey: "id") as? UUID {
                     context.delete(result)
                     nameArray.remove(at: indexPath.row)
                     idArray.remove(at: indexPath.row)
@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     do{
                         try context.save()
                     }catch{
-                        print("Data not saved")
+                        print("")
                     }
                 }
             }
