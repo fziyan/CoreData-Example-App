@@ -10,10 +10,12 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var nameArray = [String]()
     var idArray = [UUID]()
     var sourceName = ""
     var sourceId: UUID?
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,6 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = nameArray[indexPath.row]
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         sourceName = nameArray[indexPath.row]
@@ -39,8 +42,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    
-    @IBOutlet weak var tableView: UITableView!
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        // Core data veri silme işini burada yaptım.
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Gallery")
+        
+        //id'ye göre filtreleme
+        let idString = idArray[indexPath.row].uuidString
+        fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        do{
+            let results = try context.fetch(fetchRequest)
+            for result in results as! [NSManagedObject] {
+                if let id = result.value(forKey: "id") as? UUID {
+                    context.delete(result)
+                    nameArray.remove(at: indexPath.row)
+                    idArray.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                    
+                    do{
+                        try context.save()
+                    }catch{
+                        print("Data not saved")
+                    }
+                }
+            }
+            
+        }catch{
+            
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,10 +93,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
          let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondVC")
         vc.modalPresentationStyle = .formSheet
          self.present(vc, animated: true)
-         
     }
     
-    // Bunu fonksiyonu eklememin amacı data kayıt edilmeden hemen önce bu viewController'a haber vermek
+    // Bu fonksiyonu eklememin amacı data kayıt edilmeden hemen önce bu viewController'a haber vermek
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "newData"), object: nil)
     }
@@ -88,7 +122,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if let id = result.value(forKey: "id") as? UUID{
                     self.idArray.append(id)
                 }
-                
                 self.tableView.reloadData()
             }
             
