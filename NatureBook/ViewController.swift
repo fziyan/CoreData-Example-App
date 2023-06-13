@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var idArray = [UUID]()
     var sourceName = ""
     var sourceId: UUID?
+    var dbObjectArray: [NSManagedObject] = []
     
     
     
@@ -37,6 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondVC") as! SecondViewController
         vc.targetName = sourceName
         vc.targetId = sourceId
+        vc.dbObject = dbObjectArray[indexPath.row]
         vc.modalPresentationStyle = .formSheet
         self.present(vc, animated: true)
         
@@ -112,8 +114,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         do {
             
-           let results =  try context.fetch(fetchRequest)
-            for result in results as! [NSManagedObject] {
+           let results =  try context.fetch(fetchRequest) as! [NSManagedObject]
+            self.dbObjectArray = results
+            
+            
+            for result in results {
                 
                 if let name = result.value(forKey: "name") as? String{
                     self.nameArray.append(name)
